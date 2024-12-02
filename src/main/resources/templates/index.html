@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Rates</title>
+</head>
+<body>
+
+    <table>
+        <tr class="light-grey">
+            <th>id</th>
+            <th>Carpark</th>
+            <th>Weekday 1 Rate</th>
+            <th>Weekday 2 Rate</th>
+            <th>Saturday Rate</th>
+            <th>Sunday / PH Rate</th>
+        </tr>
+        <tr data-th-each="cp, status:${carparks}"
+            data-th-class="${status.odd}? lighter-grey : light-grey">
+            <td data-th-text="${cp.id}"></td>
+            <td data-th-text="${cp.carpark}"></td>
+            <td data-th-text="${cp.weekday1_rate}"></td>
+            <td data-th-text="${cp.weekday2_rate}"></td>
+            <td data-th-text="${cp.saturday_rate}"></td>
+            <td data-th-text="${cp.sunday_rate}"></td>
+        </tr>
+    </table>
+    
+</body>
+</html>

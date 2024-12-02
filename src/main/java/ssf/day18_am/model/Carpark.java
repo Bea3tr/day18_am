@@ -66,9 +66,9 @@ public class Carpark {
 
     @Override
     public String toString() {
-        return "Carpark [id=" + id + ", carpark=" + carpark + ", category=" + category + ", weekday1_rate="
+        return "id=" + id + ", carpark=" + carpark + ", category=" + category + ", weekday1_rate="
                 + weekday1_rate + ", weekday2_rate=" + weekday2_rate + ", saturday_rate=" + saturday_rate
-                + ", sunday_rate=" + sunday_rate + "]";
+                + ", sunday_rate=" + sunday_rate;
     }
     
 }
