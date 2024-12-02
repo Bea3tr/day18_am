@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Details</title>
+</head>
+<body>
+    
+    <form method="POST" action="/person/create">
+        <table class="center-table no-border">
+            <tr>
+                <td>ID: </td>
+                <td> 
+                    <input type="text" name="id" required>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Name: </td>
+                <td> 
+                    <input type="text" name="fullName" required>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td>
+                    <input type="email" name="email" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Postal Code: </td>
+                <td>
+                    <input type="text" name="postalCode" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone No.: </td>
+                <td>
+                    <input type="text" name="phoneNumber" required>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>
