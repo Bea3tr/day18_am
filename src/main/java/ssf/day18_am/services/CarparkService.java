@@ -24,6 +24,7 @@ public class CarparkService {
         String carparkRawData = restTemplate.getForObject(Constant.CARPARK_URL, String.class);
         JsonReader reader = Json.createReader(new StringReader(carparkRawData));
         JsonArray records = reader.readObject()
+                                  .getJsonObject("result")
                                   .getJsonArray("records");
 
         for(int i = 0; i < records.size(); i++) {
