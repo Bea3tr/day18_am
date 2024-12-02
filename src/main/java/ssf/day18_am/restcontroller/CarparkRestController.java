@@ -13,7 +13,7 @@ import ssf.day18_am.services.CarparkService;
 
 @RestController
 @RequestMapping
-public class CpApiController {
+public class CarparkRestController {
 
     @Autowired
     private CarparkService cpSvc;
