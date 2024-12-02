@@ -1,9 +1,25 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+
+.no-border, .no-border tr, .no-border td{
+    border: none;
 }
 
 table {
     border-collapse: collapse;
+}
+
+.center-table {
+    margin: auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.center-table td, .center-table th {
+    padding: 5px 10px;
 }
 
 tr, td, th {
@@ -18,4 +34,9 @@ tr, td, th {
 
 .lighter-grey {
     background-color: rgba(128, 128, 128, 0.174);
+}
+
+.error {
+    color: red;
+    font-size: 12px;
 }

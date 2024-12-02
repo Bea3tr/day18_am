@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Listing</title>
+</head>
+<body>
+    
+    <table class="center-table">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Postal Code</th>
+            <th>Phone Number</th>
+        </tr>
+        <tr data-th-each="person: ${persons}">
+            <td data-th-text="${person.id}"></td>
+            <td data-th-text="${person.fullName}"></td>
+            <td data-th-text="${person.email}"></td>
+            <td data-th-text="${person.postalCode}"></td>
+            <td data-th-text="${person.phoneNumber}"></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a href="/person">Back</a>
+    </div>
+</body>
+</html>

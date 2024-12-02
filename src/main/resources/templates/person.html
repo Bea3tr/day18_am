@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Details</title>
+</head>
+<body>
+    
+    <form method="POST" action="/person" data-th-object="${person}">
+        <table class="center-table no-border">
+            <tr>
+                <td>Name: </td>
+                <td> 
+                    <input type="text" name="name" data-th-field="*{fullName}">
+                    <div data-th-if="${#fields.hasErrors('fullName')}"
+                         data-th-errors="*{fullName}" data-th-errorclass="error">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td>
+                    <input type="email" name="email" data-th-field="*{email}">
+                    <div data-th-if="${#fields.hasErrors('email')}"
+                         data-th-errors="*{email}" data-th-errorclass="error">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Postal Code: </td>
+                <td>
+                    <input type="text" name="postalCode" data-th-field="*{postalCode}">
+                    <div data-th-if="${#fields.hasErrors('postalCode')}"
+                         data-th-errors="*{postalCode}" data-th-errorclass="error">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone No.: </td>
+                <td>
+                    <input type="text" name="phoneNumber" data-th-field="*{phoneNumber}">
+                    <div data-th-if="${#fields.hasErrors('phoneNumber')}"
+                         data-th-errors="*{phoneNumber}" data-th-errorclass="error">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>
