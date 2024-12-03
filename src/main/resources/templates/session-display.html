@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Session Cart</title>
+</head>
+<body>
+
+    <form method="GET" action="/session/new">
+        <button class="button-style" type="submit">Create New</button>
+    </form>
+    
+    <br>
+
+    <table class="center-table">
+        <tr>
+            <th>Name</th>
+            <th>Date of birth</th>
+        </tr>
+        <tr data-th-each="name: ${nameList}">
+            <td data-th-text="${name.key}"></td>
+            <td data-th-text="${name.value}"></td>
+        </tr>
+    </table>
+    
+    <br>
+
+    <div>
+        <form method="GET" action="/session/main">
+            <button class="button-style" type="submit">Home</button>
+        </form>
+    </div>
+</body>
+</html>

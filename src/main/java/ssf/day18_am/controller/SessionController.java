@@ -1,5 +1,6 @@
 package ssf.day18_am.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,34 +18,59 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/session")
 public class SessionController {
 
-    @GetMapping
-    public String getSession() {
-        return "session";
+    @GetMapping("/main")
+    public String getMain() {
+        return "session-main";
     }
 
-    @PostMapping("/cart")
+    @PostMapping("/main")
+    public String postClear(HttpSession sess) {
+        sess.invalidate();
+        return "session-main";
+    }
+
+    @GetMapping("/new")
+    public String getSession() {
+        return "session-new";
+    }
+
+    @PostMapping("/display")
     public String postCart(Model model, 
         HttpSession sess,
         @RequestBody MultiValueMap<String, String> form) {
 
-        String item = form.getFirst("item");
-        int qty = Integer.parseInt(form.getFirst("quantity"));
+        String name = form.getFirst("name");
+        System.out.println(form.getFirst("dob"));
+        String date = form.getFirst("dob");
 
         // Get session 
-        Map<String, Integer> cartList = (Map<String, Integer>) sess.getAttribute("cartList");
-        if(cartList == null) {
-            cartList = new HashMap<>();
-            sess.setAttribute("cartList", cartList);
+        Map<String, String> nameList = (Map<String, String>) sess.getAttribute("nameList");
+        if(nameList == null) {
+            nameList = new HashMap<>();
+            sess.setAttribute("nameList", nameList);
         }
+        nameList.put(name, date);
         
-        if(cartList.containsKey(item)) {
-            cartList.put(item, cartList.get(item)+qty);
-        } else {
-            cartList.put(item, qty);
+
+        model.addAttribute("nameList", nameList);
+        return "session-display";
+    }
+
+    @GetMapping("/display")
+    public String getDisplay(Model model, 
+        HttpSession sess) {
+
+        // Get session 
+        Map<String, Integer> nameList = (Map<String, Integer>) sess.getAttribute("nameList");
+        if(nameList == null) {
+            nameList = new HashMap<>();
+            sess.setAttribute("nameList", nameList);
         }
 
-        model.addAttribute("cartList", cartList);
-        return "session-cart";
+        model.addAttribute("nameList", nameList);
+        return "session-display";
     }
+
+
     
 }

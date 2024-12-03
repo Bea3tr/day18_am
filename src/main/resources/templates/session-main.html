@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Session Main</title>
+</head>
+<body>
+
+    <h1>Home</h1>
+
+    <div>
+        <form method="GET" action="/session/new">
+            <button class="button-style" type="submit">Create</button>
+        </form>
+    </div>
+
+    <div>
+        <form method="POST" action="/session/main">
+            <button class="button-style" type="submit">Clear</button>
+        </form>
+    </div>
+
+    <div>
+        <form method="GET" action="/session/display">
+            <button class="button-style" type="submit">Display</button>
+        </form>
+    </div>
+    
+</body>
+</html>

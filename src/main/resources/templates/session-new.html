@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Session</title>
 </head>
 <body>
 
-    <form method="POST" action="/session/cart">
-        <table>
+    <form method="POST" action="/session/display">
+        <table class="center-table no-border column-left">
             <tr>
-                <td>Item: </td>
+                <td>Name: </td>
                 <td>
-                    <input type="text" name="item" required>
+                    <input type="text" name="name" required>
                 </td>
             </tr>
             <tr>
-                <td>Quantity</td>
+                <td>Date of birth</td>
                 <td>
-                    <input type="number" name="quantity" required>
+                    <input type="date" name="dob" required>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button type="submit">Add to cart</button>
+                    <button type="submit">Save</button>
                 </td>
             </tr>
         </table>

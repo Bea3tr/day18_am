@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import ssf.day18_am.constant.Constant;
@@ -111,38 +112,37 @@ public class DemoController {
     @GetMapping("/person")
     @ResponseBody
     public String testPersonHash() {
-        List<String> personsList = new LinkedList<>();
-        personsList.add((new Person("1", "freddy", "freddy@gmail.com", "543212", "9876543")).toString());
-        personsList.add((new Person("2", "bonny", "bonny@gmail.com", "123456", "9765421")).toString());
+        List<Person> personsList = new LinkedList<>();
+        personsList.add((new Person("1", "freddy", "freddy@gmail.com", "543212", "9876543")));
+        personsList.add((new Person("2", "bonny", "bonny@gmail.com", "123456", "9765421")));
 
         redisTemplate.opsForHash().put("persons", "map", personsList.toString());
 
-        Object objPerson = redisTemplate.opsForHash().get("persons", "map");
+        // Don't use this in exam
+        // Object objPerson = redisTemplate.opsForHash().get("persons", "map");
 
-        String strObject = objPerson.toString();
+        // String strObject = objPerson.toString();
 
-        logger.info(strObject);
+        // logger.info(strObject);
 
-        // List<Person> pList = new LinkedList<>();
-        // JsonReader reader = Json.createReader(new StringReader(strObject));
-        // JsonArray arr = reader.readArray();
-        // for (int i = 0; i < arr.size(); i++) {
-        //     JsonObject obj = arr.getJsonObject(i);
-        //     Person p = new Person(obj.getString("id"), obj.getString("fullName"),
-        //                      obj.getString("email"), obj.getString("postalCode"), 
-        //                      obj.getString("phoneNumber"));
-        //     pList.add(p);
-        // }
+        // Serialize using Json-P to JsonArray
+        JsonArrayBuilder jsonArrBuilder = Json.createArrayBuilder();
+        for(Person p : personsList) {
+            JsonObject jsonObj = Json.createObjectBuilder()
+                                    .add("id", p.getId())
+                                    .add("fullName", p.getFullName())
+                                    .add("email", p.getEmail())
+                                    .add("phoneNumber", p.getPhoneNumber())
+                                    .add("postalCode", p.getPostalCode())
+                                    .build();
+            jsonArrBuilder.add(jsonObj);
+        }
+        JsonArray jsonArr = jsonArrBuilder.build();
         
-
-        // strObject = strObject.replace("[", "");
-        // strObject = strObject.replace("]", "");
-        // String[] splitWords = strObject.split(", ");
-
-        // List<String> retrievedList = new LinkedList<>();
-        // for(String word : splitWords)
-        //     retrievedList.add(word);
-        return strObject;
+        redisTemplate.opsForHash().put("persons", "map", jsonArr.toString());
+        Object objPerson = redisTemplate.opsForHash().get("persons", "map");
+        
+        return objPerson.toString();
     }
 
 }

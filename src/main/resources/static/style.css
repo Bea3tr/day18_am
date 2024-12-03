@@ -27,6 +27,10 @@ tr, td, th {
     padding: 2px;
 }
 
+.column-left td {
+    text-align: left;
+}
+
 .light-grey {
     background-color: lightgrey;
     border-radius: 10%;
@@ -39,4 +43,10 @@ tr, td, th {
 .error {
     color: red;
     font-size: 12px;
+}
+
+.button-style {
+    padding: 5px;
+    margin: 5px;
+    width: 100px;
 }
