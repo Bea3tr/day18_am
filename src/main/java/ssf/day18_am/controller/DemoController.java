@@ -15,19 +15,19 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
-import jakarta.json.JsonReader;
 import ssf.day18_am.constant.Constant;
 import ssf.day18_am.model.Person;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Logger;
-import java.io.StringReader;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 
+@SuppressWarnings("null")
 @Controller
 @RequestMapping("/demo")
 public class DemoController {
@@ -145,4 +145,27 @@ public class DemoController {
         return objPerson.toString();
     }
 
+    @GetMapping("/person/revised")
+    @ResponseBody
+    public String testPersonHashRevised() {
+        List<Person> personsList = new LinkedList<>();
+        personsList.add((new Person("1", "freddy", "freddy@gmail.com", "543212", "9876543")));
+        personsList.add((new Person("2", "bonny", "bonny@gmail.com", "123456", "9765421")));
+
+        // Serialize using Json-P to JsonObject
+        for(Person p : personsList) {
+            JsonObject jsonObj = Json.createObjectBuilder()
+                                    .add("id", p.getId())
+                                    .add("fullName", p.getFullName())
+                                    .add("email", p.getEmail())
+                                    .add("phoneNumber", p.getPhoneNumber())
+                                    .add("postalCode", p.getPostalCode())
+                                    .build();
+            redisTemplate.opsForHash().put("persons", p.getId(), jsonObj.toString());
+        }
+        
+        Map<Object, Object> objPerson = redisTemplate.opsForHash().entries("persons");
+        
+        return objPerson.toString();
+    }
 }

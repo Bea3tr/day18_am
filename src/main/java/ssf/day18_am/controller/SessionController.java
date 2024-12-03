@@ -1,6 +1,5 @@
 package ssf.day18_am.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,13 +33,13 @@ public class SessionController {
         return "session-new";
     }
 
+    @SuppressWarnings("unchecked")
     @PostMapping("/display")
     public String postCart(Model model, 
         HttpSession sess,
         @RequestBody MultiValueMap<String, String> form) {
 
         String name = form.getFirst("name");
-        System.out.println(form.getFirst("dob"));
         String date = form.getFirst("dob");
 
         // Get session 
@@ -56,6 +55,7 @@ public class SessionController {
         return "session-display";
     }
 
+    @SuppressWarnings("unchecked")
     @GetMapping("/display")
     public String getDisplay(Model model, 
         HttpSession sess) {
