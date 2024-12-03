@@ -11,7 +11,6 @@ public class Person {
     @Size(min=5, max=150, message="Name must be between 5 and 150 characters")
     private String fullName;
 
-
     // required and must be in email format
     @Email
     @NotNull(message="Email cannot be null")
@@ -58,7 +57,13 @@ public class Person {
 
     @Override
     public String toString() {
-        return id + "," + fullName + "," + email + "," + postalCode + "," + phoneNumber;
+        return "{" +
+                "\"id\": " + id + "," + 
+                "\"fullName\": " + fullName + "," + 
+                "\"email\": " + email + "," + 
+                "\"postalCode\": " + postalCode + "," + 
+                "\"phoneNumber\": " + phoneNumber +
+                "}";
     }
     
 }

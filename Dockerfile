@@ -30,3 +30,7 @@ ENV SERVER_PORT=4000
 EXPOSE ${SERVER_PORT}
 
 ENTRYPOINT java -jar day18_am.jar
+
+## Exit if there is error || exit 1
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -s -f http:/localhost:4000/demo/health || exit 1

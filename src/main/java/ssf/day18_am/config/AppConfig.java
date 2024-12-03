@@ -56,4 +56,27 @@ public class AppConfig {
         return template;
     }
     
+    @Bean(Constant.template02)
+    public RedisTemplate<String, String> createRedisTemplate2() {
+        
+        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisHost, redisPort);
+        config.setDatabase(redisDatabase);
+
+        if(!redisUsername.trim().equals("")) {
+            logger.info("Setting redis username and password");
+            config.setUsername(redisUsername);
+            config.setPassword(redisPassword);
+        }
+        JedisClientConfiguration jedisClient = JedisClientConfiguration.builder().build();
+        JedisConnectionFactory jedisFac = new JedisConnectionFactory(config, jedisClient);
+        jedisFac.afterPropertiesSet();
+
+        RedisTemplate<String, String> template = new RedisTemplate<>();
+        template.setConnectionFactory(jedisFac);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new StringRedisSerializer());
+
+        return template;
+    }
 }

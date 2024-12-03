@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+</head>
+<body>
+    
+    <h1>Formatting Date using Thymeleaf</h1>
+    <p>
+        <span data-th-utext="${#dates.format(date, 'dd/MMM/yyyy HH:mm:ss')}"></span>
+    </p>
+
+    <p>
+        <span data-th-utext="${#dates.format(date, 'dd/MMM/yyyy hh:mm:ss a')}"></span>
+    </p>
+
+    <p>
+        <span data-th-utext="${#dates.format(date, 'dd/MMM/yyyy hh:mm:ss a D E')}"></span>
+    </p>
+</body>
+</html>
